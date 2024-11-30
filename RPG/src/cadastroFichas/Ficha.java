@@ -1,4 +1,6 @@
 package cadastroFichas;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Ficha {
     private String nome_personagem;
@@ -15,6 +17,8 @@ public abstract class Ficha {
     private int deslocamento;
     private int p_e_rodada;
 
+    private List<Missao> missoes;
+
     public Ficha(String nome_personagem, int idade_personagem, int forca, int agilidade, int intelecto, int vigor, int presenca, int nivel_exposicao, int sanidade, int pontos_esforcos, int vida, int deslocamento, int p_e_rodada) {
         this.nome_personagem = nome_personagem;
         this.idade_personagem = idade_personagem;
@@ -29,6 +33,7 @@ public abstract class Ficha {
         this.vida = vida;
         this.deslocamento = deslocamento;
         this.p_e_rodada = p_e_rodada;
+        this.missoes = new ArrayList<>();
     }
 
     public String getNome_personagem() {
@@ -136,4 +141,19 @@ public abstract class Ficha {
     }
     
     public abstract void habilidades();
+
+    public void adicionarMissao(Missao missao) {
+        missoes.add(missao);
+    }
+
+    public void removerMissao(Missao missao) {
+        missoes.remove(missao);
+    }
+
+    public void listarMissoes() {
+        System.out.println("Missões de " + nome_personagem + ":");
+        for (Missao missao : missoes) {
+            missao.exibirDetalhes();
+        }
+    }
 }
